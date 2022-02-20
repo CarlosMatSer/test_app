@@ -4,22 +4,35 @@
         <h4>Prueba técnica</h4>
     </div>
 
-    <div class="">
-        <div class="input-group">
-            <span class="input-group-text" id="basic-addon1"><i class="bi bi-person"></i></span>
-            <input type="text" class="form-control" placeholder="Email" aria-label="Email">
-        </div>
-        <div class="input-group">
-            <span class="input-group-text" id="basic-addon1"><i class="bi bi-lock"></i></span>
-            <input type="text" class="form-control" placeholder="Contraseña" aria-label="Contraseña" type="password"/>
-        </div>
-        <div class="form-check form-switch">
-            <label class="form-check-label" for="flag-recordar">Recordar</label>
-            <input class="form-check-input" type="checkbox" role="switch" id="flag-recordar">
-        </div>
-        <div class="position-absolute start-50 translate-middle">
-            <button type="button" class="btn btn-primary">Acceder</button>
-        </div>
+    <div class="margin">
+        <form [formGroup]="loginForm">
+
+            <div class="input-group margin">
+                <span class="input-group-text" id="basic-addon1"><i class="bi bi-person"></i></span>
+                <input type="text" class="form-control" placeholder="Email" aria-label="Email"
+                    formControlName="email">
+            </div>
+            <div *ngIf="loginForm.get('email')?.invalid && accessClicked"
+                class="error-message">Valor incorrecto</div>
+            
+            <div class="input-group margin">
+                <span class="input-group-text" id="basic-addon1"><i class="bi bi-lock"></i></span>
+                <input type="text" class="form-control" placeholder="Contraseña" aria-label="Contraseña" type="password"
+                    formControlName="password">
+            </div>
+            <div *ngIf="loginForm.get('password')?.invalid && accessClicked"
+                class="error-message">Valor incorrecto</div>
+
+            <div class="form-check form-switch margin">
+                <label class="form-check-label" for="flag-recordar">Recordar</label>
+                <input class="form-check-input" type="checkbox" role="switch" id="flag-recordar"
+                    formControlName="remember">
+            </div>
+
+            <div class="position-absolute start-50 translate-middle margin">
+                <button type="submit" class="btn btn-primary" (click)="onSubmit()">Acceder</button>
+            </div>
+        </form>
     </div>
 </div>
 
